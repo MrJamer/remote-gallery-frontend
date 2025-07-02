@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import container from '../core/container';
+import TYPES from '../core/inversify.types';
+import { ImageService } from '../core/services/ImageService';
 
 export default function UploadForm() {
   const [title, setTitle] = useState('');
@@ -48,3 +51,28 @@ export default function UploadForm() {
     </form>
   );
 }
+
+const UploadForm: React.FC = () => {
+  const [file, setFile] = useState<File | null>(null);
+  const imageService = container.get<ImageService>(TYPES.ImageService);
+
+  const handleUpload = async () => {
+    if (!file) return;
+
+    try {
+      await imageService.uploadImage(file);
+      alert('Успішно завантажено!');
+    } catch (error) {
+      alert('Помилка при завантаженні');
+    }
+  };
+
+  return (
+    <div>
+      <input type="file" onChange={e => setFile(e.target.files?.[0] || null)} />
+      <button onClick={handleUpload}>Завантажити</button>
+    </div>
+  );
+};
+
+export default UploadForm;
