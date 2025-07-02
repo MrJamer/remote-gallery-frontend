@@ -1,7 +1,8 @@
 import React from 'react';
+import '../../styles/layout/_header.scss';
 
 const Header: React.FC = () => (
-  <header style={{ padding: '10px', backgroundColor: '#eee' }}>
+  <header className="header">
     <h1>Фотогалерея</h1>
   </header>
 );

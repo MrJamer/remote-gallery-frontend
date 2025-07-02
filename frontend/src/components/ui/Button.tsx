@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../styles/components/_button.scss';
 
 type Props = {
   onClick: () => void;
@@ -6,7 +7,7 @@ type Props = {
 };
 
 const Button: React.FC<Props> = ({ onClick, children }) => (
-  <button onClick={onClick} style={{ padding: '8px 16px' }}>
+  <button className="button" onClick={onClick}>
     {children}
   </button>
 );

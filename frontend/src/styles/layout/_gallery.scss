@@ -1,0 +1,23 @@
+.gallery {
+  @include flex-center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 20px;
+
+  .image-card {
+    border: 1px solid #ddd;
+    border-radius: $border-radius;
+    padding: 10px;
+    background-color: white;
+
+    img {
+      max-width: 150px;
+      border-radius: $border-radius;
+    }
+
+    p {
+      text-align: center;
+      margin-top: 8px;
+    }
+  }
+}
