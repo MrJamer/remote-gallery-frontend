@@ -1,20 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { eventBus } from './utils/eventBus';
+
+const Gallery: React.FC = () => {
+  useEffect(() => {
+    const handleImageUpload = (data: any) => {
+      console.log('Нове зображення:', data.imageId);
+    };
+
+    eventBus.on('imageUploaded', handleImageUpload);
+
+    return () => eventBus.off('imageUploaded', handleImageUpload);
+  }, []);
+
+  return <div>Галерея</div>;
+};
+
 
 interface ImageData {
   id: number;
   title: string;
   url: string;
 }
-
-export default function Gallery() {
-  const [images, setImages] = useState<ImageData[]>([]);
-
-  useEffect(() => {
-    axios.get<ImageData[]>('/api/images')
-      .then(res => setImages(res.data))
-      .catch(err => console.error(err));
-  }, []);
 
   return (
     <div className="allery">
