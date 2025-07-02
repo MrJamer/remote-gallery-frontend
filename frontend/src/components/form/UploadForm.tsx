@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import Button from '../ui/Button';
+import Input from '../ui/Input';
 import axios from 'axios';
-import container from '../core/container';
-import TYPES from '../core/inversify.types';
-import { ImageService } from '../core/services/ImageService';
+import container from '../../core/container';
+import TYPES from '../../core/inversify.types';
+import { ImageService } from '../../core/services/ImageService';
 
 export default function UploadForm() {
   const [title, setTitle] = useState('');
@@ -69,8 +71,8 @@ const UploadForm: React.FC = () => {
 
   return (
     <div>
-      <input type="file" onChange={e => setFile(e.target.files?.[0] || null)} />
-      <button onClick={handleUpload}>Завантажити</button>
+      <Input type="file" onChange={e => setFile(e.target.files?.[0] || null)} />
+      <Button onClick={handleUpload}>Завантажити</Button>
     </div>
   );
 };
